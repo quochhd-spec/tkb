@@ -1,3 +1,7 @@
+
+TKB_LOP_HS_Chong_Bop_Ngang.html
+
+100%
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="vi" xml:lang="vi">
@@ -14,124 +18,60 @@
         padding: 0;
         font-family: 'Inter', sans-serif;
         background-color: #f4f7f6;
-        height: 100vh;
-        overflow: hidden; /* Vô hiệu hóa cuộn trang gốc */
+        height: 100%; /* Sửa 100vh thành 100% để chống lỗi iframe */
+        width: 100%;  /* Sửa 100vw thành 100% để không bị tràn ngang */
+        overflow: hidden; 
     }
 
     #app-container {
         display: flex;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* ----- SIDEBAR (THANH BÊN TRÁI) ----- */
     #sidebar {
-        width: 280px;
-        min-width: 280px;
+        width: 260px; /* Thu gọn sidebar một chút */
+        min-width: 260px;
         background-color: #ffffff;
         box-shadow: 2px 0 10px rgba(0,0,0,0.05);
         display: flex;
         flex-direction: column;
         height: 100%;
         overflow-y: auto;
-        padding: 20px;
+        padding: 15px;
         z-index: 10;
         transition: transform 0.3s ease;
+        box-sizing: border-box;
     }
 
-    #sidebar table {
-        width: 100%;
-        margin-bottom: 15px;
-        border-collapse: collapse;
-    }
-    #sidebar table th {
-        text-align: left;
-        color: #7f8c8d;
-        font-size: 0.85em;
-        display: block;
-        padding-bottom: 2px;
-        font-weight: 500;
-    }
-    #sidebar table td {
-        font-weight: 600;
-        color: #2c3e50;
-        display: block;
-        margin-bottom: 12px;
-        font-size: 0.95em;
-    }
+    #sidebar table { width: 100%; margin-bottom: 15px; border-collapse: collapse; }
+    #sidebar table th { text-align: left; color: #7f8c8d; font-size: 0.85em; display: block; padding-bottom: 2px; font-weight: 500; }
+    #sidebar table td { font-weight: 600; color: #2c3e50; display: block; margin-bottom: 12px; font-size: 0.95em; }
+    #sidebar p > strong { font-size: 1.1em; text-transform: uppercase; color: #0056b3; display: block; margin-top: 10px; margin-bottom: 15px; border-bottom: 2px solid #e3f2fd; padding-bottom: 8px; }
+    #sidebar ul { display: flex; flex-direction: column; gap: 8px; padding: 0; list-style: none; margin-bottom: 40px; }
+    #sidebar ul li { margin-bottom: 5px; font-weight: bold; color: #1a252f; }
+    #sidebar ul li ul { margin-top: 8px; margin-bottom: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    #sidebar ul li a { display: block; padding: 8px 12px; background-color: #f8f9fa; color: #34495e; text-decoration: none; border-radius: 6px; font-size: 0.9em; font-weight: 500; transition: all 0.2s ease; border-left: 3px solid transparent; }
+    #sidebar ul li a:hover { background-color: #e3f2fd; color: #0056b3; }
+    #sidebar ul li a.selected { background-color: #e3f2fd; border-left-color: #0056b3; color: #0056b3; font-weight: 700; }
 
-    #sidebar p > strong {
-        font-size: 1.1em;
-        text-transform: uppercase;
-        color: #0056b3;
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 15px;
-        border-bottom: 2px solid #e3f2fd;
-        padding-bottom: 8px;
-    }
-    
-    #sidebar ul {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 0;
-        list-style: none;
-        margin-bottom: 40px;
-    }
-    
-    /* Css cho menu đa cấp (khối lớp) */
-    #sidebar ul li {
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #1a252f;
-    }
-    
-    #sidebar ul li ul {
-        margin-top: 8px;
-        margin-bottom: 10px;
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Chia 2 cột cho gọn */
-        gap: 5px;
-    }
-    
-    #sidebar ul li a {
-        display: block;
-        padding: 8px 12px;
-        background-color: #f8f9fa;
-        color: #34495e;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 0.9em;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        border-left: 3px solid transparent;
-    }
-    
-    #sidebar ul li a:hover {
-        background-color: #e3f2fd;
-        color: #0056b3;
-    }
-    
-    #sidebar ul li a.selected {
-        background-color: #e3f2fd;
-        border-left-color: #0056b3;
-        color: #0056b3;
-        font-weight: 700;
-    }
-
-    /* ----- MAIN CONTENT (KHU VỰC BẢNG BÊN PHẢI) ----- */
+    /* ----- MAIN CONTENT ----- */
     #main-content {
         flex: 1;
-        padding: 30px;
+        padding: 15px;
         overflow-y: auto;
+        overflow-x: hidden;
         background-color: #f4f7f6;
         height: 100%;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     #welcome-message {
         background: #fff;
-        padding: 50px 30px;
+        padding: 40px 20px;
         border-radius: 12px;
         text-align: center;
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -141,107 +81,47 @@
         margin-left: auto;
         margin-right: auto;
     }
-    #welcome-message h3 {
-        color: #0056b3;
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        margin-top: 0;
-    }
+    #welcome-message h3 { color: #0056b3; font-size: 1.5em; margin-bottom: 15px; margin-top: 0; }
 
     /* Vỏ bọc Bảng */
     .table-wrapper {
         display: none; 
         background: #fff;
-        border-radius: 12px;
+        border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        padding: 20px;
+        padding: 10px;
         overflow-x: auto;
         margin-bottom: 30px;
+        width: 100%;
+        box-sizing: border-box;
     }
-    .table-wrapper.active {
-        display: block;
-        animation: fadeIn 0.4s ease-out;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+    .table-wrapper.active { display: block; animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* Định dạng bảng TKB */
     table.odd_table, table.even_table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 700px; /* Chống co rúm chữ khi màn hình nhỏ */
+        min-width: 650px; /* Thu nhỏ min-width để dễ fit trên màn hình iframe */
     }
-    caption {
-        font-size: 1.4em;
-        font-weight: bold;
-        color: #1a252f;
-        padding-bottom: 15px;
-        text-align: left;
-    }
-    caption .institution {
-        font-size: 0.65em;
-        color: #7f8c8d;
-        font-weight: normal;
-        display: block;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+    caption { font-size: 1.2em; font-weight: bold; color: #1a252f; padding-bottom: 10px; text-align: left; }
+    caption .institution { font-size: 0.7em; color: #7f8c8d; font-weight: normal; display: block; margin-bottom: 5px; text-transform: uppercase; }
     
-    th, td {
-        border: 1px solid #ecf0f1;
-        padding: 12px 8px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    thead td, thead th.xAxis, tbody th.yAxis, .foot td {
-        background-color: #f8f9fa;
-        color: #2c3e50;
-        font-weight: 600;
-    }
-    thead th.xAxis {
-        background-color: #e3f2fd;
-        color: #0d47a1;
-    }
+    th, td { border: 1px solid #ecf0f1; padding: 10px 5px; text-align: center; vertical-align: middle; font-size: 0.9em; }
+    thead td, thead th.xAxis, tbody th.yAxis, .foot td { background-color: #f8f9fa; color: #2c3e50; font-weight: 600; }
+    thead th.xAxis { background-color: #e3f2fd; color: #0d47a1; }
 
-    /* Chỉnh chữ lớn hơn theo yêu cầu (tăng từ 0.85em lên 1.1em) */
-    td div.line1 .subject {
-        font-weight: 700;
-        color: #0056b3;
-        font-size: 1.2em; /* Tăng chữ môn học */
-    }
+    td div.line1 .subject { font-weight: 700; color: #0056b3; font-size: 1.1em; }
+    td div.teacher { font-size: 0.95em; color: #555; margin-top: 4px; }
     
-    td div.teacher {
-        font-size: 1em; /* Tăng chữ tên giáo viên */
-        color: #555;
-        margin-top: 4px;
-    }
-    
-    td:not(.empty):not(.notAvailable):not(.yAxis) {
-        background-color: #f0f8ff; 
-        border: 1px solid #cce5ff;
-        border-radius: 4px;
-        transition: background-color 0.2s;
-    }
-    td:not(.empty):not(.notAvailable):not(.yAxis):hover {
-        background-color: #d6eaf8; 
-    }
-
-    td.empty span.empty, td.notAvailable span.notAvailable {
-        color: #bdc3c7;
-        font-size: 0.9em;
-    }
-    td.empty, td.notAvailable {
-        background-color: #fdfdfd;
-    }
+    td:not(.empty):not(.notAvailable):not(.yAxis) { background-color: #f0f8ff; border: 1px solid #cce5ff; border-radius: 4px; transition: background-color 0.2s; }
+    td:not(.empty):not(.notAvailable):not(.yAxis):hover { background-color: #d6eaf8; }
+    td.empty span.empty, td.notAvailable span.notAvailable { color: #bdc3c7; font-size: 0.85em; }
+    td.empty, td.notAvailable { background-color: #fdfdfd; }
     tbody tr:hover { background-color: #f9fbfc; }
     
-    /* Ẩn các thứ mặc định dư thừa */
     table[border="1"] { border: none !important; }
-    body > p { display: none !important; } /* Ẩn các thẻ p trống và p.back cũ */
+    body > p { display: none !important; }
 
     /* Nút Toggle Mobile */
     #mobile-toggle {
@@ -252,17 +132,19 @@
         background: #0056b3;
         color: #fff;
         border: none;
-        padding: 14px 24px;
+        padding: 12px 20px;
         border-radius: 30px;
-        font-size: 1em;
+        font-size: 0.95em;
         font-weight: 600;
         box-shadow: 0 4px 12px rgba(0,86,179,0.4);
         z-index: 100;
         cursor: pointer;
     }
 
-    /* Responsive cho điện thoại/tablet */
-    @media (max-width: 900px) {
+    /* ĐIỂM QUAN TRỌNG NHẤT KHẮC PHỤC LỖI NHÚNG WEB:
+       Tăng breakpoint lên 1024px. Vì iframe trên web thường nhỏ hơn 1024px, 
+       sidebar sẽ tự động ẩn đi và biến thành nút bấm, trả lại 100% chiều ngang cho bảng TKB */
+    @media (max-width: 1024px) {
         #sidebar {
             position: fixed;
             left: 0;
@@ -270,38 +152,28 @@
             transform: translateX(-100%);
             width: 260px;
         }
-        #sidebar.open {
-            transform: translateX(0);
-        }
+        #sidebar.open { transform: translateX(0); }
         #main-content {
             width: 100%;
-            padding: 15px;
+            padding: 10px;
             padding-bottom: 80px;
         }
-        #mobile-toggle {
-            display: block;
-        }
+        #mobile-toggle { display: block; }
     }
 </style>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const body = document.body;
-
-        // 1. TẠO CẤU TRÚC GIAO DIỆN (SIDEBAR + MAIN)
         const appContainer = document.createElement('div');
         appContainer.id = 'app-container';
-        
         const sidebar = document.createElement('div');
         sidebar.id = 'sidebar';
-        
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
         
         appContainer.appendChild(sidebar);
         appContainer.appendChild(mainContent);
 
-        // 2. DI CHUYỂN CÁC THÀNH PHẦN VÀO SIDEBAR
         const headerTables = document.querySelectorAll('body > table:not(.odd_table):not(.even_table)');
         const tocTitle = document.querySelector('p > strong');
         const tocList = document.querySelector('ul');
@@ -309,7 +181,6 @@
         headerTables.forEach(t => sidebar.appendChild(t));
         if (tocTitle) sidebar.appendChild(tocTitle.parentNode);
         
-        // Rút gọn text link ở sidebar (Bỏ chữ "Nhóm lớp")
         if (tocList) {
             const links = tocList.querySelectorAll('li a');
             links.forEach(a => {
@@ -324,56 +195,44 @@
             sidebar.appendChild(tocList);
         }
 
-        // 3. DI CHUYỂN BẢNG TKB VÀO MAIN CONTENT VÀ BỌC LẠI
         const scheduleTables = document.querySelectorAll('table.odd_table, table.even_table');
         scheduleTables.forEach(table => {
             const wrapper = document.createElement('div');
             wrapper.className = 'table-wrapper';
             wrapper.id = 'wrapper_' + table.id;
-            wrapper.appendChild(table); // Rút bảng vào wrapper
-            mainContent.appendChild(wrapper); // Chuyển wrapper sang khung bên phải
+            wrapper.appendChild(table);
+            mainContent.appendChild(wrapper);
         });
 
-        // 4. HIỂN THỊ MÀN HÌNH CHÀO MỪNG
         const welcomeMsg = document.createElement('div');
         welcomeMsg.id = 'welcome-message';
-        welcomeMsg.innerHTML = '<h3>👋 Trình xem Thời Khóa Biểu</h3><p>Vui lòng chọn tên lớp ở danh sách bên trái để xem thời khóa biểu chi tiết.</p>';
+        welcomeMsg.innerHTML = '<h3>👋 Trình xem Thời Khóa Biểu</h3><p>Vui lòng chọn tên lớp ở danh sách (nút góc dưới phải) để xem chi tiết.</p>';
         mainContent.insertBefore(welcomeMsg, mainContent.firstChild);
 
-        // Đưa toàn bộ cấu trúc mới vào giao diện
         body.insertBefore(appContainer, body.firstChild);
 
-        // 5. XỬ LÝ SỰ KIỆN CLICK CHỌN MENU
         const wrappers = mainContent.querySelectorAll('.table-wrapper');
         const tocLinks = sidebar.querySelectorAll('ul li a');
 
         tocLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Tắt tất cả bảng và màu nút
                 wrappers.forEach(w => w.classList.remove('active'));
                 tocLinks.forEach(l => l.classList.remove('selected'));
                 welcomeMsg.style.display = 'none';
 
-                // Lấy ID và Bật bảng tương ứng
                 const targetId = this.getAttribute('href').substring(1);
                 const targetWrapper = document.getElementById('wrapper_' + targetId);
                 
                 if (targetWrapper) {
                     targetWrapper.classList.add('active');
                     this.classList.add('selected');
-                    
-                    // Cuộn nội dung lên đầu trang
-                    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+                    mainContent.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }
-                
-                // Đóng sidebar trên điện thoại sau khi chọn
                 sidebar.classList.remove('open');
             });
         });
 
-        // 6. XỬ LÝ NÚT MENU TRÊN ĐIỆN THOẠI
         const mobileToggle = document.createElement('button');
         mobileToggle.id = 'mobile-toggle';
         mobileToggle.innerHTML = '☰ Chọn Lớp';
@@ -389,13 +248,13 @@
     <table>
       <tr align="left" valign="top">
         <th>Tên nhà trường:</th>
-        <td>Trung học Thực hành Sài Gòn</td>
+        <td>Trường Trung học Thực hành Sài Gòn</td>
       </tr>
     </table>
     <table>
       <tr align="left" valign="top">
         <th>Ghi chú:</th>
-        <td>Áp dụng ngày 16/11/2026</td>
+        <td>TKB HKI 2026_2027 mới điều chỉnh áp dụng từ thứ HAI 16/11/2026</td>
       </tr>
     </table>
     <p><strong>Mục lục</strong></p>
@@ -9223,4 +9082,4 @@
     <p class="back"><a href="#top">Trở lên trên đỉnh</a></p>
   </body>
 </html>
-Đang hiển thị TKB_LOP_HS_Giao_Dien_Moi.html.
+Đang hiển thị TKB_LOP_HS_Chong_Bop_Ngang.html.
